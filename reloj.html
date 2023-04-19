@@ -1,0 +1,170 @@
+<html>  
+<head>
+    <script src="jquery.min.js"></script>
+    <script src="divFlip.js"></script>
+    <script>
+        $(function(){
+            var countdownDate = new Date(2023,04,5,15,00);
+			//// solicitar un día de la semana junto con una fecha larga
+			var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            $("#countDownDate").html(countdownDate.toLocaleDateString('es-ES',options));
+            //$("#countDownDate").html(countdownDate.toDateString());
+
+            var dFlip = new DivFlip();
+            dFlip.divs.top = $("#d_top");
+            dFlip.divs.bot = $("#d_bot");
+            dFlip.divs.topA = $("#d_topA");
+            dFlip.divs.botA = $("#d_botA");
+
+            var hFlip = new DivFlip();
+            hFlip.divs.top = $("#top");
+            hFlip.divs.bot = $("#bot");
+            hFlip.divs.topA = $("#topA");
+            hFlip.divs.botA = $("#botA");
+
+            var mFlip = new DivFlip();
+            mFlip.divs.top = $("#m_top");
+            mFlip.divs.bot = $("#m_bot");
+            mFlip.divs.topA = $("#m_topA");
+            mFlip.divs.botA = $("#m_botA");
+
+            var sFlip = new DivFlip();
+            sFlip.divs.top = $("#s_top");
+            sFlip.divs.bot = $("#s_bot");
+            sFlip.divs.topA = $("#s_topA");
+            sFlip.divs.botA = $("#s_botA");
+
+            dFlip.update("00");
+            hFlip.update("00");
+            mFlip.update("00");
+            sFlip.update("00");
+
+            var x = 0;
+            var h = 0;
+            var m = 0;
+            var s = 0;
+  
+            var myVar = setInterval(myTimer, 1000);
+            function myTimer() {
+                var d = new Date().getDifference(countdownDate);
+                if(x != d.days) { x =d.days; dFlip.update(x);  }
+                if(h != d.hours) { h =d.hours; hFlip.update(h);  }
+                if(m != d.minutes) { m = d.minutes; mFlip.update(m);}
+                if(s != d.seconds) { s = d.seconds; sFlip.update(s); }
+            }
+        });
+        
+    </script>
+    <style>
+        body{background-color: rgb(46, 46, 46); margin: 0; padding: 10px;}
+        .reloj{
+            background: grey; color: black;
+            border: black 1px solid;
+            border-radius: 10px;
+            width: 90px;
+            height: 40px;
+            padding: 5px;
+            
+        }
+        .caja {
+            position: relative;
+            overflow: hidden;
+            width: 20px;
+            height: 20px;
+            font-size: 1rem;
+            float: left;
+            padding: 0;
+            /*border:solid 1px red;*/
+            border-radius: 2px;
+            text-align: center;
+            
+        }
+        .caja div{
+            position: absolute;
+            top:0;
+            overflow: hidden;
+            width: 20px;
+            background-color: rgb(26, 26, 26);
+            color:grey;
+        }
+        .caja .top, .caja .topAux {
+            height: 10px;
+            transform-origin: bottom;
+        }
+        .caja .bot /*, .caja .botAux*/ {
+            height: 20px;
+        }
+        .caja .top { z-index: 30;}
+        .caja .bot { z-index: 20;}
+        .caja .topAux { 
+            z-index: 40;
+            transform-origin: bottom;
+        }
+        .caja .botAux { 
+            z-index: 25;
+            transform-origin: center;
+        }
+
+        .countDownDateDiv {
+            position: relative;
+            font-size:6px;
+            margin: 0;
+            padding: 0;
+            top:-2px;
+        }
+
+        .item { position: relative; width: 20px; float: left; margin:0 0 0 2;}
+        .item .label { position: relative; font-size: 4px; width: 10px; padding-left: 2px; }
+
+</style>
+<script>
+    
+</script>
+</head>
+<body>
+<div id="reloj" class="reloj">
+    <div class="countDownDateDiv">El viaje de no Retorno: <span id="countDownDate"></span> </div>
+    <!--<div class="countDownDateDiv">Fecha del Juicio Final de Eskape: <span id="countDownDate"></span> </div>-->
+
+    <div class="item">
+        <div class="label">Dias</div>
+        <div class="caja">
+            <div id="d_top" class="top">00</div>
+            <div id="d_topA" class="topAux" style="visibility: hidden;">00</div>
+            <div id="d_bot" class="bot">00</div>
+            <div id="d_botA" class="botAux" style="visibility: hidden;">00</div>
+        </div>
+    </div>
+
+    <div class="item">
+        <div class="label">Horas</div>
+        <div class="caja">
+            <div id="top" class="top">11</div>
+            <div id="topA" class="topAux" style="visibility: hidden;">22</div>
+            <div id="bot" class="bot">11</div>
+            <div id="botA" class="botAux" style="visibility: hidden;">22</div>
+        </div>
+    </div>
+
+    <div class="item">
+        <div class="label">Minutos</div>
+        <div class="caja">
+            <div id="m_top" class="top">11</div>
+            <div id="m_topA" class="topAux" style="visibility: hidden;">22</div>
+            <div id="m_bot" class="bot">11</div>
+            <div id="m_botA" class="botAux" style="visibility: hidden;">22</div>
+        </div>
+    </div>
+    <div class="item">
+        <div class="label">Segundos</div>
+        <div class="caja">
+            <div id="s_top" class="top">11</div>
+            <div id="s_topA" class="topAux" style="visibility: hidden;">22</div>
+            <div id="s_bot" class="bot">11</div>
+            <div id="s_botA" class="botAux" style="visibility: hidden;">22</div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
