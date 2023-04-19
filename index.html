@@ -116,13 +116,18 @@
         .item { position: relative; width: 20px; float: left; margin:0 0 0 2;}
         .item .label { position: relative; font-size: 4px; width: 10px; padding-left: 2px; }
 
+
+            .scaled {
+            transform: scale(2.5); /* Igual que: scaleX(0.7) scaleY(0.7) */
+            background-color: pink;
+            }
 </style>
 <script>
     
 </script>
 </head>
 <body>
-<div id="reloj" class="reloj">
+<div id="reloj" class="reloj scaled">
     <div class="countDownDateDiv">El viaje de no Retorno: <span id="countDownDate"></span> </div>
     <!--<div class="countDownDateDiv">Fecha del Juicio Final de Eskape: <span id="countDownDate"></span> </div>-->
 
